@@ -43,3 +43,7 @@ It is important to gather metrics of each component used and monitor the whole p
 - system metrics (CPU/memory used by container/server, networking)
 
 Those metrics are crucial if we run on premise, as a Cloud Platform will mostly handle that for us (hopefully).
+
+## Some months later, we think to apply another aggregation/model to the input data. How would your architecture evolve to integrate this challenge?
+
+I would create a second pipeline that would read the same Avro files that are stored. This pipeline would be about the same, except we need to change the filtering step and maybe partition differently to suit our needs.

@@ -9,7 +9,7 @@ Filtering data is easily scalable so that will not be a problem if the data is h
 
 Even with compression, it is not necessary to keep the Avro data if it takes too much storage: a few days are probably enough in case of reprocessing.
 
-Also, a tool like Indexima (which stores indexed in-memory) might be useful to replace a relational database in the end of the pipeline as it will aggregate data on very large sources.
+Also, a tool like Indexima (which stores indexes in-memory) might be useful to replace a relational database in the end of the pipeline as it will aggregate data on very large sources.
 
 ![](/images/schema1.png)
 
@@ -23,7 +23,7 @@ If the data is used nearly in real-time, that will not be necessary to apply the
 
 If we need historical data, then it becomes interesting to apply the changes on the actual data or even to record all the versions of the changes. In that case, we need to define a key on our data on which we can track the changes. We might apply a SCD pattern (Slow Changing Dimension) so that every change is recorded and has a start/end date.
 
-![](/images/scd_example.png)
+![](/images/scd_example.gif)
 
 ## What infrastructure, products, workflow scheduler, would you use to make sure the whole pipeline runs fine in production?
 

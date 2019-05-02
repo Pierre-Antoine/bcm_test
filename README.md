@@ -1,4 +1,12 @@
 # BCM Test interview
+## Install the program
+
+Maven and JDK 1.8+ are required.
+
+Clone the project and run:
+```
+mvn clean install
+```
 
 ## Launch the program
 

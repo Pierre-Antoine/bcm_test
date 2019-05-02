@@ -1,7 +1,7 @@
 # Architecture Plan
 ## If you were to develop the same application where the temperatures dataset grows by 1Go per minute, what would you do differently?
 
-I would first set a staging area to store the incoming data in raw format and compress it. It is mainly plain text so it is easily compressible. I would use the Avro format for that as it is very efficient for writing massive data. The data would be partitioned on a technical date. This partitioning can be used if we need to reprocess the data with different rules.
+I would first set a staging area to store the incoming data in raw format and compress it. It is mainly plain text so it is easily compressible. I would use the Avro format for that as it is very efficient for writing massive data. The data would be partitioned on a technical date. This partitioning can be put to good use if we need to reprocess some data with different rules.
 
 Then I would use a data engine like MapReduce or Spark to process this raw data, filter it to keep only what it is needed for our computation. The data might grow rapidly, most of it may not be useful for our usecase.
 

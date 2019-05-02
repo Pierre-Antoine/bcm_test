@@ -40,7 +40,7 @@ What I would choose:
 - Workflow scheduler : AirFlow / ControlM
 - Data Engine : DataFlow or Spark
 - Datawarehousing : BigQuery / Hive (or even parquet files with SparkQL)
-- Database : PostgreSQL, as it is truly open source and more stable that MySQL for heavy-loads
+- Relational Database : PostgreSQL, as it is truly open source and more stable that MySQL for heavy-loads. This specific database can be a SPOF if high availability is not set.
 - Storage : Google Cloud Storage / HDFS
 
 To ensure that everything runs smoothly, it is important to gather metrics of each component used and monitor the whole pipeline:

@@ -48,6 +48,7 @@ To ensure that everything runs smoothly, it is important to gather metrics of ea
 - data statistics (volume of new data, processed data for each step etc.)
 - storage evolution
 - system metrics (CPU/memory used by container/server, networking)
+
 For this specific purpose, I would use a "classic" EFK stack (Elastic/Filebeat/Kibana (or Grafana)) to gather all those metrics and monitor the pipeline.
 
 Those metrics are crucial if we run on premise as we can tune our stack to make the most of our hardware.

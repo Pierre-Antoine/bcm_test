@@ -1,5 +1,7 @@
 ## SQL Query
 
+The program was croned to run every hour.
+
 The query to get the data is the following:
 ```SQL
 SELECT date_format(t.date_import,'%Y-%m-%d %H') AS date_heure, t.region, t.val_temperature, t3.val_temperature AS temperature_minus3 

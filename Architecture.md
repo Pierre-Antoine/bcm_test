@@ -1,19 +1,23 @@
 # Architecture Plan
 ## If you were to develop the same application where the temperatures dataset grows by 1Go per minute, what would you do differently?
 
-I would first set a staging area to store temporarily the incoming data and compress it. It is mainly plain text so it is easily compressible. I would use the Avro format for that as it is very efficient for writing massive data. 
+I would first set a staging area to store the incoming data in raw format and compress it. It is mainly plain text so it is easily compressible. I would use the Avro format for that as it is very efficient for writing massive data. The data would be partitioned on a technical date.
 
 Then I would use a data engine like MapReduce or Spark to process this raw data, filter it to keep only what it is needed for our computation. The data might grow rapidly, most of it may not be useful for our usecase.
 
 Filtering data is easily scalable so that will not be a problem if the data is huge. The Problem in our usecase is that we need to calculate the mean temperature by region of France, so the computation for each region cannot be run in parallel. That is why after filtering, I would partition the data by date and region before the final processing, in a columnar format like Parquet or ORC. This format might depend on the platform and the engine that are used (Parquet if we use Spark, ORC with Hive and other with Google Platform).
 
-Even with compression, it is not necessary to keep the Avro data if it takes too much storage: a few days are probably enough in case of reprocessing.
-
 Also, a tool like Indexima (which stores indexes in-memory) might be useful to replace a relational database in the end of the pipeline as it will aggregate data on very large sources.
 
 ![](/images/schema1.png)
 
-Depending on the needs, I think an interface with this amount of data going over HTTP might not be the right choice for batching. If possible, I would consider using a real-time pipeline with a Kafka Cluster to handle the load. 
+So my ideal pipeline would be:
+1. Staging area for storing source date in raw format (compressed and partioned)
+2. Processing on the data plaform
+3. Store the clean and detailed data on the data platform
+4. Push the aggregated data to a relational database or use it directly with a tool like Indexima
+
+Depending on the needs, I think an interface with this amount of data going over HTTP might not be the right choice for batching. If possible, I would consider using a real-time pipeline with a Kafka Cluster to handle the incoming load. 
 
 ## If our data source was to emit multiple versions (corrections for instance) of the same data, what could be the different applicable strategies?
 

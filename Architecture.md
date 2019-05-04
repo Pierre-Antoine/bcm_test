@@ -53,6 +53,12 @@ For this specific purpose, I would use a "classic" EFK stack (Elastic/Filebeat/K
 
 Those metrics are crucial to run on premise as you can tune the stack to make the most of the hardware.
 
+Finally, to secure th quality of thé delivery, I would naturally setup thé following:
+- Tests Driven Developments
+- Tests automation 
+- Continuons delivery
+The tools for that would be Rundeck, Jenkins ans Ansible.
+ 
 ## Some months later, we think to apply another aggregation/model to the input data. How would your architecture evolve to integrate this challenge?
 
 I would create a second pipeline that would read the same Avro files that are stored. 
